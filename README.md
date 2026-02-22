@@ -17,7 +17,35 @@ To file a bug, or raise another type of issue, please navigate to the appropriat
 
 All Cordova code is hosted in repositories on GitHub.
 
-[![Cordova Dependency Graph](https://sketchviz.com/@raphinesse/a6f28acb2281b782d9fb5ef486834deb/fbb1d0715431bdd67a9bc430a8d0a9899b145bf9.sketchy.png)](//sketchviz.com/@raphinesse/a6f28acb2281b782d9fb5ef486834deb)
+```mermaid
+---
+config:
+  look: handDrawn
+---
+graph TD
+    cli --> common
+
+    create --> common
+    create --> app-hello-world
+    create --> fetch
+    
+    fetch --> common
+    
+    lib --> fetch
+    lib --> common
+    lib -.-> platforms
+    
+    cli --> create
+    cli --> lib
+
+    plugman --> lib
+
+    platforms -->|all| common
+    platforms -.->|all| js
+    platforms -->|browser| serve
+    platforms -->|ios| node-xcode
+    platforms["Platforms<br/>android | browser | ios"]
+```
 
 Continuous Integration status of all relevant repositories: https://apache.github.io/cordova-status/
 
